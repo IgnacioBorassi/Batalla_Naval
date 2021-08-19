@@ -8,7 +8,7 @@ class Barco():
 
 
         
-class Celda:
+class Celda():
     '''Esto es una celda, contiene barcos, misiles y/o agua.'''
     
     def __init__(self, estado, barco):
@@ -34,7 +34,8 @@ class Celda:
 
 
     def ubicarBarco(self):
-        '''Saber si en la celda especificada hay un barco.'''
+        '''Saber si en la celda especificada esta ocupada
+        por un barco o misil.'''
         
         if self.estado == True:
             print("Hay una serpiente en mi bota")
@@ -50,7 +51,8 @@ class Tablero():
         self.crearCeldas()
         self.barcosRandom()
         self.contador = 0
-        
+        self.numeros = ['1','2','3','4','5','6','7','8']
+
     def crearCeldas(self):
         ''' Crea una lista de objeto Celda'''
         
@@ -87,7 +89,7 @@ class Tablero():
                 if self.contador == 8:
                     print("ganaste")
 
-            self.crearTablero()
+            self.dibujarTablero()
 
         
     def barcosRandom(self):
@@ -97,11 +99,11 @@ class Tablero():
             posicionX = int(random.randrange(0,8))
             posicionY = int(random.randrange(0,8))
             
-            if self.coordenadas[posicionX][posicionY].estado == True:
+            if self.coordenadas[posicionX][posicionY].barco != None:
                 
-                while self.coordenadas[posicionX][posicionY].estado == True:
-                    posicionX=int(random.randrange(0,8))
-                    posicionY=int(random.randrange(0,8))
+                while self.coordenadas[posicionX][posicionY].barco != None:
+                    posicionX = int(random.randrange(0,8))
+                    posicionY = int(random.randrange(0,8))
                     
                 self.coordenadas[posicionX][posicionY].cambiar(True, Barco(False))    
             else:
@@ -112,20 +114,25 @@ class Tablero():
         '''Da la ubicacion de los barcos colocados'''
         
         letras = ['A','B','C','D','E','F','G','H']
-        numeros = ['1','2','3','4','5','6','7','8']
+        
         for x in range(0,8):
             for i in range(0,8):
                 if self.coordenadas[i][x].barco != None:
-                    print("Hay un barco en: " + str(letras[x])+ str(numeros[i]))
+                    print("Hay un barco en: " +
+                          str(letras[x]) + str(self.numeros[i]))
 
 
-    def crearTablero(self):
+    def dibujarTablero(self):
+        '''Dibuja el tablero con barcos, barcos hundidos,
+        misiles ya lanzados y espacios de agua'''
+        
         self.listatablero = []
+        
         for i in range(0,8):
             self.listatablero.append([])
             for x in range(0,8):
                 if self.coordenadas[i][x].barco != None:
-        ..            if self.coordenadas[i][x].barco.hundido == True:
+                    if self.coordenadas[i][x].barco.hundido == True:
                         self.listatablero[i].append("X")
                     else:    
                         self.listatablero[i].append("0")
@@ -133,16 +140,25 @@ class Tablero():
                     self.listatablero[i].append("+")
                 else:
                     self.listatablero[i].append(" ")
+
         letras= ['  ','|A|','B','|C','|D|','E','|F','|G|','H|']
-        numeros=['1','2','3','4','5','6','7','8']
-        print(str(letras[0]) + str(letras[1])+ str(letras[2])+str(letras[3])+
-              str(letras[4])+ str(letras[5])+ str(letras[6])+str(letras[7])+str(letras[8]))
+
+        print(str(letras[0]) + str(letras[1]) + str(letras[2]) +
+              str(letras[3]) + str(letras[4]) + str(letras[5]) +
+              str(letras[6]) + str(letras[7]) + str(letras[8]))
+
         for i in range(0,8):
-            print("|"+str(numeros[i])+ "|"+str(self.listatablero[i][0])+ "|" +
-                  str(self.listatablero[i][1]) + "|" + str(self.listatablero[i][2])+ "|" +
-                  str(self.listatablero[i][3]) + "|" + str(self.listatablero[i][4])+ "|" +
-                  str(self.listatablero[i][5]) + "|" + str(self.listatablero[i][6])+ "|" +
+            print("|"+str(self.numeros[i])+ "|" +
+                  str(self.listatablero[i][0]) + "|" +
+                  str(self.listatablero[i][1]) + "|" +
+                  str(self.listatablero[i][2]) + "|" +
+                  str(self.listatablero[i][3]) + "|" +
+                  str(self.listatablero[i][4]) + "|" +
+                  str(self.listatablero[i][5]) + "|" +
+                  str(self.listatablero[i][6]) + "|" +
                   str(self.listatablero[i][7]) + "|")
+
+
 
 
 
