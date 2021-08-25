@@ -6,7 +6,6 @@ class Tablero():
         self.coordenadas = []
         self.listatablero = []
         self.crearCeldas()
-        self.barcosRandom()
         self.contador = 0
         self.numeros = ['1','2','3','4','5','6','7','8']
 
@@ -72,7 +71,7 @@ class Tablero():
                     if self.coordenadas[i][x].barco.hundido == True:
                         self.listatablero[i].append("X")
                     else:    
-                        self.listatablero[i].append("0")
+                        self.listatablero[i].append(" ")
                 elif self.coordenadas[i][x].estado == True:
                     self.listatablero[i].append("+")
                 else:
