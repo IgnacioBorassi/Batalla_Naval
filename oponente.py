@@ -2,15 +2,18 @@ import random
 from tablero import Tablero
 
 class Oponente():
+    '''Oponente del Batalla Naval'''
+    
     def __init__(self):
         self.tablero=Tablero()
         self.tablero.barcosRandom()
 
+
     def eliminarBarco(self, x,y):
-        '''Llama una funcion de celda para hundir un
-        barco dadas las coord'''
+        '''Hunde un barco dadas las coordenaas'''
         
         self.tablero.coordenadas[x][y].matarBarco() 
+
 
     def misilHundido(self, x,y):
         '''Llama una funcion de celda para ubicar un

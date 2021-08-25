@@ -1,13 +1,14 @@
 from jugador import Jugador
 class Juego():
     def __init__(self):
+        rta = ""
         self.jugador = Jugador()
         self.comenzarJuego()
 
     def comenzarJuego(self):
-        '''Ayuda'''
+        '''Comienza el juego de Batalla Naval'''
         
-        self.jugador.jugar()
+        self.pregunta()
         
         while (self.jugador.oponente.tablero.contador != 8):
             
@@ -40,13 +41,11 @@ class Juego():
             print("Perdio el jugador")
                                 
     def atacarAlJugador(self, letra, numero):
-        '''Ataca a la celda en cuestión, devolviendo el resultado del ataque'''
+        '''Ataca a la celda en cuestión del jugador, devolviendo el resultado del ataque'''
+        
         if self.jugador.tablero.coordenadas[numero][letra].barco == None:
             self.misilHundidoJ(numero, letra)
             print("Agua")
-                
-        elif self.jugador.tablero.coordenadas[numero][letra].barco.hundido == True:
-            print("Ya esta hundido el barco")
                 
         else:
             self.eliminarBarcoJ(numero, letra)
@@ -59,15 +58,13 @@ class Juego():
 
             
     def eliminarBarcoJ(self, x,y):
-        '''Llama una funcion de celda para hundir un
-        barco dadas las coord'''
+        '''Hunde un barco del jugador dadas las coordenadas'''
         
         self.jugador.tablero.coordenadas[x][y].matarBarco() 
 
 
     def misilHundidoJ(self, x,y):
-        '''Llama una funcion de celda para ubicar un
-        misil dadas las coordendas sin un barco'''
+        '''Hunde un misil en el tablero del jugador dadas las coordenadas'''
 
         self.jugador.tablero.coordenadas[x][y].misilHundido()
 
@@ -76,7 +73,7 @@ class Juego():
         '''Muestra el tablero del oponente'''
         
         print("El tablero del oponente: ")
-        self.jugador.oponente.tablero.dibujarTablero("0")
+        self.jugador.oponente.tablero.dibujarTablero(" ")
 
 
     def tableroJugador(self):
@@ -85,5 +82,27 @@ class Juego():
         print("Su tablero: ")
         self.jugador.tablero.dibujarTablero("0")
 
-            
+    def pregunta(self):
+        '''Le da la capacidad al jugador de elegir el modo de juego'''
+
+        self.rta = str(input("Desea jugar con 8 barcos random? De ser su respuesta 'No', los colocarà usted: "))
+        self.rta = self.rta.upper()
+        if self.rta == "SI":
+            self.jugador.tablero.barcosRandom()
+        elif self.rta == "NO":
+            for i in range(0,8):
+                valores = self.jugador.sacarValores()
+                self.jugador.agregarBarco(valores[1],valores[0])
+        else:
+            while self.rta not in ["SI","NO"]:
+                self.rta = str(input("Desea jugar con 8 barcos? De ser su respuesta 'No', los colocarà usted: "))
+                self.rta = self.rta.upper()
+            if self.rta == "SI":
+                self.jugador.tablero.barcosRandom()
+            elif self.rta == "NO":
+                for i in range(0,8):
+                    valores = self.jugador.sacarValores()
+                    self.jugador.agregarBarco(valores[1],valores[0])
+
+                    
 juego=Juego()

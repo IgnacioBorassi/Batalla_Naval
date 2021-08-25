@@ -2,9 +2,10 @@ from tablero import Tablero
 from oponente import Oponente
 
 class Jugador():
+    '''El jugador que inicia el juego de Batalla Naval'''
+    
     def __init__(self):
         self.tablero=Tablero()
-        self.rta = " "
         self.oponente = Oponente()
 
         
@@ -29,21 +30,18 @@ class Jugador():
 
 
     def agregarBarco(self, x,y):
-        '''Llama una funcion de celda para agregar un
-        barco dadas las coord'''
+        '''Agrega un barco dadas las coordenadas'''
         
         self.tablero.agregarBarco(x,y) 
 
 
     def eliminarBarco(self, x,y):
-        '''Llama una funcion de celda para hundir un
-        barco dadas las coord'''
+        '''Hunde un barco del oponente dadas las coordenas'''
         
         self.oponente.tablero.coordenadas[x][y].matarBarco() 
 
     def misilHundido(self, x,y):
-        '''Llama una funcion de celda para ubicar un
-        misil dadas las coordendas sin un barco'''
+        '''Ubica un misil dadas las coordenas en el tablero del oponente'''
 
         self.oponente.tablero.coordenadas[x][y].misilHundido()
 
@@ -76,36 +74,4 @@ class Jugador():
                 valores = [i, numero]
         return valores
 
-    
-    def jugar(self):
-        '''Le da la capacidad al jugador de elegir el modo de juego y de
-        ingresar coordenadas para tirar un misil'''
-        if self.rta != "":
-            self.rta = str(input("Desea jugar con 8 barcos random? De ser su respuesta 'No', los colocarà usted: "))
-            self.rta = self.rta.upper()
-            if self.rta == "SI":
-                self.tablero.barcosRandom()
-                self.rta = ""
-            elif self.rta == "NO":
-                for i in range(0,8):
-                    valores = self.sacarValores()
-                    self.agregarBarco(valores[1],valores[0])
-                self.rta = ""
-            else:
-                while self.rta not in ["SI","NO"]:
-                    self.rta = str(input("Desea jugar con 8 barcos? De ser su respuesta 'No', los colocarà usted: "))
-                    self.rta = self.rta.upper()
-                if self.rta == "SI":
-                    self.tablero.barcosRandom()
-                    self.rta = ""
-                elif self.rta == "NO":
-                    for i in range(0,8):
-                        valores = self.sacarValores()
-                        self.agregarBarco(valores[1],valores[0])
-                    self.rta = ""
-        '''       
-        print("Ingrese los valores para tirar el misil en: A-H y 1-8")
-        valores = self.sacarValores()
-        return valores
-        self.tirarMisil(valores[0],valores[1])'''
         

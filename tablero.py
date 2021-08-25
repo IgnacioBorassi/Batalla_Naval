@@ -2,6 +2,8 @@ import random
 import celdas
 
 class Tablero():
+    '''Tablero de Batalla Naval'''
+    
     def __init__(self):
         self.coordenadas = []
         self.listatablero = []
@@ -10,7 +12,7 @@ class Tablero():
         self.numeros = ['1','2','3','4','5','6','7','8']
 
     def crearCeldas(self):
-        ''' Crea una lista de objeto Celda'''
+        ''' Crea una lista de objetos Celda'''
         
         self.coordenadas = []
         self.listatablero = []
@@ -22,8 +24,7 @@ class Tablero():
 
     
     def agregarBarco(self, x,y):
-        '''Llama una funcion de celda para agregar un
-        barco dadas las coord'''
+        '''Agrega un barco dadas las coordenadas'''
         
         self.coordenadas[x][y].agregarBarco()
 
