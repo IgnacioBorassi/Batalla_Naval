@@ -1,37 +1,31 @@
 from tablero import Tablero
+from oponente import Oponente
 
 class Jugador():
     def __init__(self):
         self.tablero=Tablero()
         self.rta = " "
-        self.jugar()
+        self.oponente = Oponente()
 
+        
     def tirarMisil(self,letra,numero):
         '''Ataca a la celda en cuestión, devolviendo el resultado del ataque'''
         
-        if numero >= 8 or letra >=8 or numero <= -1 or letra <= -1:
-            print("No hay coordenadas mayores a 8 o menores a 1.")
-
+        if self.oponente.tablero.coordenadas[numero][letra].barco == None:
+            self.misilHundido(numero, letra)
+            print("Agua")
+                
+        elif self.oponente.tablero.coordenadas[numero][letra].barco.hundido == True:
+            print("Ya esta hundido el barco")
+                
         else:
-        
-            if self.tablero.coordenadas[numero][letra].barco == None:
-                self.misilHundido(numero, letra)
-                print("Agua")
-                
-            elif self.tablero.coordenadas[numero][letra].barco.hundido == True:
-                print("Ya esta hundido el barco")
-                
-            else:
-                self.eliminarBarco(numero, letra)
-                print("Hundiste un barco. Sabes cuantas vidas habia ahi? me imagine.")
-                self.tablero.contador += 1
+            self.oponente.eliminarBarco(numero, letra)
+            print("Hundiste un barco. Sabes cuantas vidas habia ahi? me imagine.")
+            self.oponente.tablero.contador += 1
 
 
-            self.tablero.dibujarTablero()
-            if self.tablero.contador != 8:
-                self.jugar()
-            else:
-                print("ganaste pa")
+            if self.oponente.tablero.contador == 8:
+                print("Gano el jugador")
 
 
     def agregarBarco(self, x,y):
@@ -45,13 +39,13 @@ class Jugador():
         '''Llama una funcion de celda para hundir un
         barco dadas las coord'''
         
-        self.tablero.coordenadas[x][y].matarBarco() 
+        self.oponente.tablero.coordenadas[x][y].matarBarco() 
 
     def misilHundido(self, x,y):
         '''Llama una funcion de celda para ubicar un
         misil dadas las coordendas sin un barco'''
 
-        self.tablero.coordenadas[x][y].misilHundido()
+        self.oponente.tablero.coordenadas[x][y].misilHundido()
 
 
     def sacarValores(self):
@@ -109,11 +103,9 @@ class Jugador():
                         valores = self.sacarValores()
                         self.agregarBarco(valores[1],valores[0])
                     self.rta = ""
-                
-        print("Ingrese los valores para tirar el misl en: A-H y 1-8")
+        '''       
+        print("Ingrese los valores para tirar el misil en: A-H y 1-8")
         valores = self.sacarValores()
-        self.tirarMisil(valores[0],valores[1])
+        return valores
+        self.tirarMisil(valores[0],valores[1])'''
         
-
-
-jugador=Jugador()

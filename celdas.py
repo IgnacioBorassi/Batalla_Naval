@@ -30,11 +30,21 @@ class Celda():
         self.cambiar(True, None)
 
         
-    def ubicarBarco(self):
+    def estadoCelda(self):
         '''Saber si en la celda especificada esta ocupada
         por un barco o misil.'''
-        
+        estadoActual = ""
         if self.estado == True:
-            print("Hay una serpiente en mi bota")
+            if self.barco != None:
+                if self.barco.hundido == True:
+                    estadoActual = "BarcoH"
+                    return estadoActual
+                else:
+                    estadoActual = "BarcoNoH"
+                    return estadoActual
+            else:
+                estadoActual = "MisilH"
+                return estadoActual
         else:
-            print("Tu bota esta limpia")
+            estadoActual = "Agua"
+            return estadoActual

@@ -58,7 +58,7 @@ class Tablero():
                           str(letras[x]) + str(self.numeros[i]))
 
 
-    def dibujarTablero(self):
+    def dibujarTablero(self,barco):
         '''Dibuja el tablero con barcos, barcos hundidos,
         misiles ya lanzados y espacios de agua'''
         
@@ -71,7 +71,7 @@ class Tablero():
                     if self.coordenadas[i][x].barco.hundido == True:
                         self.listatablero[i].append("X")
                     else:    
-                        self.listatablero[i].append(" ")
+                        self.listatablero[i].append(barco)
                 elif self.coordenadas[i][x].estado == True:
                     self.listatablero[i].append("+")
                 else:
