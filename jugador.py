@@ -59,15 +59,16 @@ class Jugador():
                 letra = letra.upper()
                 exit
 
-        numero = int(input("Ingrese un numero: "))
+        numero = str(input("Ingrese un numero: "))
 
         
-        if numero in [1,2,3,4,5,6,7,8]:
+        if numero in ['1','2','3','4','5','6','7','8']:
             exit
         else:
-            while numero not in [1,2,3,4,5,6,7,8]:
-                numero = str(input("Ingrese un numero: "))
-
+            while numero not in ['1','2','3','4','5','6','7','8']:
+                numero = str(input("Ingrese un numero valido: "))
+            numero = int(numero)
+        numero = int(numero)
         for i in range (0,8):
             if letra == letras[i]:
                 numero -= 1

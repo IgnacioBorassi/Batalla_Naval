@@ -91,17 +91,25 @@ class Juego():
             self.jugador.tablero.barcosRandom()
         elif self.rta == "NO":
             for i in range(0,8):
-                valores = self.jugador.sacarValores()
-                self.jugador.agregarBarco(valores[1],valores[0])
+                    valores = self.jugador.sacarValores()
+                    if self.jugador.tablero.coordenadas[valores[1]][valores[0]].estado == True:
+                        while self.jugador.tablero.coordenadas[valores[1]][valores[0]].estado == True:
+                            print("No repita coordenadas")
+                            valores = self.jugador.sacarValores()
+                    self.jugador.agregarBarco(valores[1],valores[0])
         else:
             while self.rta not in ["SI","NO"]:
-                self.rta = str(input("Desea jugar con 8 barcos? De ser su respuesta 'No', los colocarà usted: "))
+                self.rta = str(input("Desea jugar con 8 barcos random? De ser su respuesta 'No', los colocarà usted: "))
                 self.rta = self.rta.upper()
             if self.rta == "SI":
                 self.jugador.tablero.barcosRandom()
             elif self.rta == "NO":
                 for i in range(0,8):
                     valores = self.jugador.sacarValores()
+                    if self.jugador.tablero.coordenadas[valores[1]][valores[0]].estado == True:
+                        while self.jugador.tablero.coordenadas[valores[1]][valores[0]].estado == True:
+                            print("No repita coordenadas")
+                            valores = self.jugador.sacarValores()
                     self.jugador.agregarBarco(valores[1],valores[0])
 
                     
