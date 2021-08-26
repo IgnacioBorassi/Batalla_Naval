@@ -85,7 +85,7 @@ class Juego():
     def pregunta(self):
         '''Le da la capacidad al jugador de elegir el modo de juego'''
 
-        self.rta = str(input("Desea jugar con 8 barcos random? De ser su respuesta 'No', los colocarà usted: "))
+        self.rta = str(input("Desea jugar con 8 barcos random? De ser su respuesta 'No', los colocara usted: "))
         self.rta = self.rta.upper()
         if self.rta == "SI":
             self.jugador.tablero.barcosRandom()

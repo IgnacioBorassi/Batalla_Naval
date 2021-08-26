@@ -63,20 +63,20 @@ class Tablero():
         '''Dibuja el tablero con barcos, barcos hundidos,
         misiles ya lanzados y espacios de agua'''
         
-        self.listatablero = []
+        listatablero = []
         
         for i in range(0,8):
-            self.listatablero.append([])
+            listatablero.append([])
             for x in range(0,8):
                 if self.coordenadas[i][x].barco != None:
                     if self.coordenadas[i][x].barco.hundido == True:
-                        self.listatablero[i].append("X")
+                        listatablero[i].append("X")
                     else:    
-                        self.listatablero[i].append(barco)
+                        listatablero[i].append(barco)
                 elif self.coordenadas[i][x].estado == True:
-                    self.listatablero[i].append("+")
+                    listatablero[i].append("+")
                 else:
-                    self.listatablero[i].append(" ")
+                    listatablero[i].append(" ")
 
         letras= ['  ','|A|','B','|C','|D|','E','|F','|G|','H|']
 
@@ -86,11 +86,11 @@ class Tablero():
 
         for i in range(0,8):
             print("|"+str(self.numeros[i])+ "|" +
-                  str(self.listatablero[i][0]) + "|" +
-                  str(self.listatablero[i][1]) + "|" +
-                  str(self.listatablero[i][2]) + "|" +
-                  str(self.listatablero[i][3]) + "|" +
-                  str(self.listatablero[i][4]) + "|" +
-                  str(self.listatablero[i][5]) + "|" +
-                  str(self.listatablero[i][6]) + "|" +
-                  str(self.listatablero[i][7]) + "|")
+                  str(listatablero[i][0]) + "|" +
+                  str(listatablero[i][1]) + "|" +
+                  str(listatablero[i][2]) + "|" +
+                  str(listatablero[i][3]) + "|" +
+                  str(listatablero[i][4]) + "|" +
+                  str(listatablero[i][5]) + "|" +
+                  str(listatablero[i][6]) + "|" +
+                  str(listatablero[i][7]) + "|")
